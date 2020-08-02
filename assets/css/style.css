@@ -1,0 +1,116 @@
+@font-face {
+    font-family: "PanamaLight";
+    src: url("../font/Panama-Light.otf");
+}
+
+body {
+    background-color: #fff;
+    font-family: "PanamaLight";
+    color: #5a5b5d;
+}
+
+h3 {
+    font-weight: 900;
+}
+
+button {
+    background-color: #be544a;
+    border: 1px solid #be544a;
+    border-radius: 30px;
+    color: #fff;
+    margin-left: 35px;
+    padding: 10px 25px;
+    font-weight: lighter;
+    min-width: 150px;
+    transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+    color: #be544a;
+    background-color: #fff;
+}
+
+button:focus{
+    outline: none;
+}
+
+p {
+    font-weight: 600;
+}
+
+p.instruction {
+    margin-right: 50px;
+    padding-left: 45px;
+}
+
+p.description {
+    margin-right: 50px;
+    padding-left: 65px;
+}
+
+input,
+textarea,
+select {
+    border: 1px solid #5cd89f;
+    border-radius: 10px;
+    padding: 8px 14px 11px 14px;
+    color: #265942;
+    font-size: 22px;
+    font-weight: 200;
+    margin: 8px 0;
+    letter-spacing: 0.05em;
+    width: calc(100% - 30px);
+}
+
+input::placeholder,
+textarea::placeholder,
+select::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #265942;
+}
+
+form input.error {
+    background-color: #ffc5c5;
+    border-color: #bf3232;
+    color: #bf3232;
+}
+
+form p.error {
+    color: #bf3232;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder,
+select:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: #265942;
+}
+
+input::-ms-input-placeholder,
+textarea::-ms-input-placeholder,
+select::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: #265942;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    background-color: #edfff6;
+}
+
+.top-bar {
+    background-color: #5a5b5d;
+    height: 100px;
+    padding: 10px 45px 10px 40px;
+}
+
+.top-bar .logo {
+    width: 70px;
+    height: 80px;
+}
+
+.instructions {
+    padding-top: 70px;
+}
