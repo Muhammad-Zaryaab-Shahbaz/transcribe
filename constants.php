@@ -11,6 +11,7 @@ define('ROUTE_REMINDER', 'reminder');
 define('ROUTE_ADMIN', 'admin');
 define('ROUTE_LOGOUT', 'logout');
 define('ROUTE_LOGIN', 'login');
+define('ROUTE_SAVE_REMINDER', 'save_reminder');
 
 ///////////////////////////////////////////
 //////////////// GLOBALS //////////////////
@@ -18,3 +19,5 @@ define('ROUTE_LOGIN', 'login');
 
 define('HOME_URL', 'http://www.uikuik.info/');
 define('EMAIL', 'webmaster@uikuik.info');
+define('REMINDER_SECONDS', 30);
+define('REDIRECT_URL', 'http://uikuik.info/l/index.php/481835?code={userId}&lang=fr&newtest=Y');

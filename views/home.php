@@ -1,3 +1,4 @@
+<?php // unsetSession(); ?>
 <div class="container instructions">
     <h3>CONSIGNE</h3>
     <br />

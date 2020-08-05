@@ -1,7 +1,7 @@
 <?php
 $error = isset($_SESSION['error']) ? $_SESSION['error'] : '';
 ?>
-<div id="main" class="content">
+<div class="pt-5">
     <div class="block hero_banner bg-white">
         <div class="container">
             <div class="row">
