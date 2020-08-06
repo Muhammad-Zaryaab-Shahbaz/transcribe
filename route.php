@@ -51,7 +51,10 @@ class Routes
                 break;
             case ROUTE_SAVE_REMINDER:
                 saveReminder();
-            break;
+                break;
+            case ROUTE_EXPORT:
+                downloadCSV();
+                break;
             default:
                 userHome();
         }

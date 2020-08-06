@@ -7,7 +7,7 @@
                 <p>Nombre de participants :</p>
             </div>
             <div class="col-md-2">
-                <p>91</p>
+                <p><?= fetchTotalParticipants() ?></p>
             </div>
         </div>
         <div class="row">
@@ -15,7 +15,7 @@
                 <p>Nombre de chaînes commencées :</p>
             </div>
             <div class="col-md-2">
-                <p>31</p>
+                <p><?= fetchTotalChains() ?></p>
             </div>
         </div>
         <div class="row">
@@ -23,7 +23,7 @@
                 <p>Nombre de chaînes terminées :</p>
             </div>
             <div class="col-md-4">
-                <p>12 soit 60 participants</p>
+                <p><?= fetchTotalCompletedChains() ?> soit <?= fetchTotalUsersCompletedChains() ?> participants</p>
             </div>
         </div>
         <br>
@@ -32,7 +32,7 @@
         </div>
     </div>
     <br>
-    <div class="container">
-        <button>TÉLÉCHARGER</button>
+    <div class="container mb-3">
+        <button onclick="window.open('<?= ROUTE_EXPORT ?>','_blank')">TÉLÉCHARGER</button>
     </div>
 </div>

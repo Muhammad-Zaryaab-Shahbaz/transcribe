@@ -82,7 +82,7 @@ function getStatement()
         $place = getUsersCountByChain($chainId);
         $place++;
 
-        if($place > 5 ){
+        if ($place > 2) {
             // create new chain.
             return createNewFlow();
         }
@@ -90,19 +90,20 @@ function getStatement()
         // get last users text 
         $userId = $chain['user'];
         $user = getUserById($userId);
-        
+
         // create user
         $userId = createUser($chainId, $place);
         // set chain status as in-process
         updateChainStatus($chainId, 1);
-        
+
         setSession($userId, $chainId, $user['answer']);
         // $msg = fetchMessageByChain($chainId);
         return $user['answer'];
     }
 }
 
-function createNewFlow(){
+function createNewFlow()
+{
     $msg = fetchRandomMessage();
     // create new chain
     $chainId = createChain($msg['id']);
@@ -128,10 +129,11 @@ function unsetSession()
     unset($_SESSION['message']);
 }
 
-function saveReminder(){
+function saveReminder()
+{
     $answer = $_POST['reminder'] ?? '';
     $time = $_POST['time'] ?? '';
-    if(empty($answer) || empty($time)){
+    if (empty($answer) || empty($time)) {
         echo false;
         return false;
     }
@@ -144,7 +146,7 @@ function saveReminder(){
 
     $place = getUsersCountByChain($chainId);
 
-    $completed = $place === 5 ? 1 : 0;
+    $completed = $place == PARTICIPANT_LIMIT ? 1 : 0;
     $status = 0; // idle
 
     updateChain($chainId, $userId, $status, $completed);
@@ -152,4 +154,24 @@ function saveReminder(){
 
     $redirectURL = str_replace("{userId}", $userId, REDIRECT_URL);
     echo $redirectURL;
+}
+
+function array_to_csv_download($array, $filename = "export.csv", $delimiter = ",")
+{
+    header('Content-Type: application/csv');
+    header('Content-Disposition: attachment; filename="' . $filename . '";');
+    // open raw memory as file so no temp files needed, you might run out of memory though
+    $f = fopen('php://output', 'w');
+    // loop over the input array
+    foreach ($array as $line) {
+        // generate csv lines from the inner arrays
+        fputcsv($f, $line, $delimiter);
+    }
+    // make php send the generated csv lines to the browser
+    fpassthru($f);
+}
+
+function downloadCSV(){
+    $data = getUsersCSV();
+    array_to_csv_download($data);
 }

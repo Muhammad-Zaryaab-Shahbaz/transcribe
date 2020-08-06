@@ -49,7 +49,7 @@ function fetchRandomMessage()
 function getChain($status = 0, $completed = 0)
 {
     global $PDO;
-    $query = "SELECT * FROM `chain` WHERE `status` = ? AND `completed` = ? LIMIT 1";
+    $query = "SELECT * FROM `chain` WHERE `status` = ? AND `completed` = ? ORDER BY updatedOn DESC LIMIT 1";
     $stmnt = $PDO->prepare($query);
     $stmnt->bindValue(1, $status);
     $stmnt->bindValue(2, $completed);
@@ -73,6 +73,38 @@ function getUserById($userId)
     
     $row = $stmnt->fetch();
     return $row ? $row : false;
+}
+
+function getUsersCSV()
+{
+    global $PDO;
+    $query = "SELECT * FROM users ORDER BY chain ASC";
+    $stmnt = $PDO->prepare($query);
+    if (!$stmnt->execute()) {
+        return false;
+    }
+
+    $headers = array();
+
+    $all = $stmnt->fetchAll(PDO::FETCH_ASSOC);
+    if(count($all)){
+        $headers = array_keys($all[0]);
+    }
+
+    $query = "SELECT * FROM users ORDER BY chain ASC";
+    $stmnt = $PDO->prepare($query);
+    if (!$stmnt->execute()) {
+        return false;
+    }
+
+    $users = array();
+    $users[] = $headers;
+
+    while($row = $stmnt->fetch(PDO::FETCH_ASSOC)){
+        $users[] = $row;
+    }
+
+    return $users;
 }
 
 function createChain($msgId){    
@@ -184,4 +216,56 @@ function updateChain($chainId, $userId, $status, $completed)
     }
 
     return true;
+}
+
+function fetchTotalParticipants()
+{
+    global $PDO;
+    $query = "SELECT COUNT(*) FROM `users` WHERE answer IS NOT NULL";
+    $stmnt = $PDO->prepare($query);
+
+    if (!$stmnt->execute()) {
+        return false;
+    }
+
+    return $stmnt->fetchColumn();
+}
+
+function fetchTotalChains()
+{
+    global $PDO;
+    $query = "SELECT COUNT(*) FROM `chain`";
+    $stmnt = $PDO->prepare($query);
+
+    if (!$stmnt->execute()) {
+        return false;
+    }
+
+    return $stmnt->fetchColumn();
+}
+
+function fetchTotalCompletedChains()
+{
+    global $PDO;
+    $query = "SELECT COUNT(*) FROM `chain` WHERE completed = 1";
+    $stmnt = $PDO->prepare($query);
+
+    if (!$stmnt->execute()) {
+        return false;
+    }
+
+    return $stmnt->fetchColumn();
+}
+
+function fetchTotalUsersCompletedChains()
+{
+    global $PDO;
+    $query = "SELECT COUNT(*) FROM users WHERE chain IN (SELECT chainId FROM `chain` WHERE completed = 1)";
+    $stmnt = $PDO->prepare($query);
+
+    if (!$stmnt->execute()) {
+        return false;
+    }
+
+    return $stmnt->fetchColumn();
 }
