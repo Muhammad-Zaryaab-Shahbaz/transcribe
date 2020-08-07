@@ -27,7 +27,7 @@ function loginView()
 function userLogin()
 {
     if (is_logged_in()) {
-        header('Location: ' . SUB_ROOT . ROUTE_ADMIN);
+        header('Location: ' . ROUTE_ADMIN);
     }
 
     if (isset($_POST['username']) && isset($_POST['password'])) {
@@ -42,7 +42,7 @@ function userLogin()
         }
 
         if (login($username, hash('sha256', $password))) {
-            header('Location: ' . SUB_ROOT . ROUTE_ADMIN);
+            header('Location: ' . ROUTE_ADMIN);
         }
     } else {
         unset($_SESSION['error']);
@@ -62,7 +62,7 @@ function userHome()
 function logout()
 {
     unset($_SESSION['userId']);
-    header('Location: ' . SUB_ROOT . ROUTE_HOME);
+    header('Location: ' . ROUTE_HOME);
 }
 
 function getStatement()

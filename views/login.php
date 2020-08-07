@@ -9,7 +9,7 @@ $error = isset($_SESSION['error']) ? $_SESSION['error'] : '';
                     <h1>Login to proceed...</h1>
                 </div>
                 <div class="col-md-12">
-                    <form action="<?= SUB_ROOT . ROUTE_LOGIN ?>" method="POST">
+                    <form action="<?= ROUTE_LOGIN ?>" method="POST">
                         <div class="row">
                             <div class="col-md-12">
                                 <input class="<?= $error ?>" name="username" type="text" placeholder="Username" />

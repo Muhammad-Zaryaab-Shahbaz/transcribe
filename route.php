@@ -45,7 +45,7 @@ class Routes
                 break;
             case ROUTE_ADMIN:
                 if (!is_logged_in()) {
-                    header('Location: ' . SUB_ROOT . ROUTE_LOGIN);
+                    header('Location: ' . ROUTE_LOGIN);
                 }
 
                 get_header();
@@ -58,6 +58,9 @@ class Routes
             case ROUTE_EXPORT:
                 downloadCSV();
                 break;
+            case ROUTE_LOGOUT:
+                logout();
+                userHome();
             default:
                 userHome();
         }
