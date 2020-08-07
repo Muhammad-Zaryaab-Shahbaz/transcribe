@@ -7,7 +7,10 @@ class Routes
         $action = trim($action, '/');
         $params = explode('/', $action);
         $index = 0;
-        $route = $params[$index] ? $params[$index] : ROUTE_HOME;
+        if ($params[0] === SUB_ROOT && SUB_ROOT !== '') {
+            $index++;
+        }
+        $route = isset($params[$index]) ? $params[$index] : ROUTE_HOME;
 
         self::normalRoutes($route);
     }

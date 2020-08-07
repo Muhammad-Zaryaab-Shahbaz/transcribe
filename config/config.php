@@ -31,4 +31,4 @@ try {
 
 // Setting Root and SubRoot Paths
 $config['root'] = 'http://www.uikuik.info/';
-define('SUB_ROOT', '');
+define('SUB_ROOT', ''); // if sub-directory exists
