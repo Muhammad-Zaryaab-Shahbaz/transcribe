@@ -82,7 +82,7 @@ function getStatement()
         $place = getUsersCountByChain($chainId);
         $place++;
 
-        if ($place > 2) {
+        if ($place > PARTICIPANT_LIMIT) {
             // create new chain.
             return createNewFlow();
         }
